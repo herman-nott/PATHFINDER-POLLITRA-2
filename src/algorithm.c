@@ -26,25 +26,20 @@ t_parent_list **initialize_parents(int num_vertices) {
 void add_parent(t_parent_list **parents, int vertex, int parent) {
     t_parent_list *new_node = malloc(sizeof(t_parent_list));
     new_node->parent = parent;
-    new_node->next = parents[vertex];
-    parents[vertex] = new_node;
+    new_node->next = NULL;
+
+    if (parents[vertex] == NULL || parents[vertex]->parent > parent) {
+        new_node->next = parents[vertex];
+        parents[vertex] = new_node;
+    } else {
+        t_parent_list *current = parents[vertex];
+        while (current->next != NULL && current->next->parent < parent) {
+            current = current->next;
+        }
+        new_node->next = current->next;
+        current->next = new_node;
+    }
 }
-
-// void add_parent(t_parent_list **parents, int vertex, int parent) {
-//     t_parent_list *new_node = malloc(sizeof(t_parent_list));
-//     new_node->parent = parent;
-//     new_node->next = NULL;
-
-//     if (parents[vertex] == NULL) {
-//         parents[vertex] = new_node;
-//     } else {
-//         t_parent_list *current = parents[vertex];
-//         while (current->next != NULL) {
-//             current = current->next;
-//         }
-//         current->next = new_node;
-//     }
-// }
 
 void free_parents(t_parent_list **parents, int num_vertices) {
     for (int i = 0; i < num_vertices; i++) {

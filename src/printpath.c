@@ -37,7 +37,8 @@ void print_distance_and_route(int *distances, int *path, int path_len, char **na
     mx_printstr("\n");
 }
 
-void print_all_paths(t_graph *graph, int src, int dest, t_parent_list **parents, char **name_list, int *path, int path_index, int *distances) {
+void print_all_paths(t_graph *graph, int src, int dest, t_parent_list **parents, 
+                     char **name_list, int *path, int path_index, int *distances) {
     path[path_index] = dest;
     path_index++;
 
@@ -54,7 +55,8 @@ void print_all_paths(t_graph *graph, int src, int dest, t_parent_list **parents,
     }
 }
 
-void print_path(t_graph *graph, int *dist, t_parent_list **parents, const char *src_name, char **name_list, bool **printed_paths) {
+void print_path(t_graph *graph, int *dist, t_parent_list **parents, 
+                const char *src_name, char **name_list, bool **printed_paths) {
     int src_idx = mx_get_name_index(graph, src_name);
     int *path = malloc(graph->v * sizeof(int));
 

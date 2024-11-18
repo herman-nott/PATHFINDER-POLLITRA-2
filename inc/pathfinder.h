@@ -2,6 +2,7 @@
 
 #include "../libmx/inc/libmx.h"
 #include <limits.h>
+#include <stdio.h>
 
 typedef struct s_island t_island;
 typedef struct s_graph t_graph;
@@ -9,6 +10,7 @@ typedef struct s_min_heap t_min_heap;
 typedef struct s_min_heap_node t_min_heap_node;
 typedef struct s_adj_list t_adj_list;
 typedef struct s_parent_list t_parent_list;
+typedef struct s_path t_path;
 
 struct s_island {
     char *name;
@@ -41,6 +43,12 @@ struct s_min_heap_node {
 struct s_parent_list {
     int parent;
     struct s_parent_list *next;
+};
+
+struct s_path {
+    int *nodes;
+    int length;
+    int total_dist;
 };
 
 //validation
